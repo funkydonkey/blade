@@ -2,6 +2,8 @@
 
 AI-powered Excel Add-in for optimizing and simplifying Excel formulas using multiple AI providers (OpenAI GPT-4, Anthropic Claude, Google Gemini, Ollama).
 
+**🚀 [Quick Start Guide](QUICKSTART.md)** | [User Guide](docs/USER_GUIDE.md) | [Architecture](docs/ARCHITECTURE.md) | [Deployment](DEPLOYMENT.md)
+
 ## Features
 
 - **AI-Powered Optimization**: Automatically optimize Excel formulas using state-of-the-art AI models
