@@ -8,8 +8,8 @@ Office.onReady(() => {
  * Shows the task pane
  */
 function showTaskpane(event: Office.AddinCommands.Event) {
-  const url = 'https://localhost:3000/taskpane.html';
-  Office.addin.showAsTaskpane(url);
+  // Task pane will be shown automatically by Office when this function is called
+  // Just signal that the command execution is complete
   event.completed();
 }
 
@@ -19,11 +19,11 @@ function showTaskpane(event: Office.AddinCommands.Event) {
 async function optimizeFormula(event: Office.AddinCommands.Event) {
   try {
     // This function is triggered from ribbon button
-    // Show the taskpane and trigger optimization
-    const url = 'https://localhost:3000/taskpane.html';
-    await Office.addin.showAsTaskpane(url);
-
-    // The actual optimization is handled in the taskpane
+    // The taskpane should already be open, and it will handle the optimization
+    // If you need to trigger optimization programmatically, you could use:
+    // - localStorage to set a flag
+    // - postMessage to communicate with the taskpane
+    // For now, just complete the event
     event.completed();
   } catch (error) {
     console.error('Error optimizing formula:', error);
@@ -31,6 +31,6 @@ async function optimizeFormula(event: Office.AddinCommands.Event) {
   }
 }
 
-// Register functions
+// Register functions globally for Office to call
 (global as any).showTaskpane = showTaskpane;
 (global as any).optimizeFormula = optimizeFormula;
