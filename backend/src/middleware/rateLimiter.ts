@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { RateLimiterMemory } from 'rate-limiter-flexible';
 
-const rateLimiter = new RateLimiterMemory({
+const limiter = new RateLimiterMemory({
   points: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS || '1000'),
   duration: parseInt(process.env.RATE_LIMIT_WINDOW_MS || '86400000') / 1000
 });
@@ -13,7 +13,7 @@ export const rateLimiter = async (
 ) => {
   try {
     const key = req.ip || 'anonymous';
-    await rateLimiter.consume(key);
+    await limiter.consume(key);
     next();
   } catch (error) {
     res.status(429).json({
