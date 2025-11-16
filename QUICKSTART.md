@@ -35,9 +35,14 @@ cp .env.example .env
 
 # Edit .env and add your API keys
 # Example:
+# PORT=5001  # Change if 5000 is already in use
 # OPENAI_API_KEY=sk-your-key-here
 # ANTHROPIC_API_KEY=sk-ant-your-key-here
 ```
+
+**Important for macOS users:**
+- If you change the PORT in .env, remember to update it in Excel add-in Settings later
+- macOS Excel may block HTTP requests - see "macOS Specific Setup" section below
 
 ### 3. Start Development Servers
 
@@ -70,7 +75,8 @@ This will:
 4. Go to **Settings** tab:
    - Select AI provider (OpenAI, Anthropic, Google, or Ollama)
    - Enter your API key
-   - Set backend endpoint (default: http://localhost:5000)
+   - Set backend endpoint (use the port from your .env file, e.g., http://localhost:5001)
+   - Check the "Current Settings (Diagnostic)" panel to verify all settings are correct
 
 ## Quick Test
 
@@ -124,6 +130,59 @@ This will:
 - Ensure backend CORS_ORIGIN matches frontend URL
 - Check backend/.env has `CORS_ORIGIN=https://localhost:3000`
 - Restart backend server after .env changes
+
+### Issue: "Load failed" error on macOS
+
+**Solution:**
+Office.js on macOS may block HTTP requests for security. You have two options:
+
+**Option 1: Use ngrok (Recommended for development)**
+```bash
+# Install ngrok
+brew install ngrok
+
+# In a new terminal, create HTTPS tunnel to your backend
+ngrok http 5001
+
+# Copy the HTTPS URL (e.g., https://abc123.ngrok.io)
+# In Excel add-in Settings, set Backend API Endpoint to that URL
+```
+
+**Option 2: Try 127.0.0.1 instead of localhost**
+```
+# In Settings, try:
+http://127.0.0.1:5001
+```
+
+### Issue: Port 5000 already in use
+
+**Solution:**
+```bash
+# Find and kill process on port 5000
+lsof -ti:5000 | xargs kill -9
+
+# Or change PORT in backend/.env to 5001 or another port
+# Then update the endpoint in Excel add-in Settings
+```
+
+## macOS Specific Setup
+
+### Debugging on macOS
+
+Since Excel on Mac doesn't support F12 DevTools, use Safari Web Inspector:
+
+1. Open **Safari** → **Preferences** → **Advanced**
+2. Enable **"Show Develop menu in menu bar"**
+3. Open Excel with your add-in
+4. In Safari → **Develop** menu → Find Excel or localhost:3000
+5. Click to open Web Inspector
+
+### Granting Network Permissions
+
+If you see network errors:
+1. **System Preferences** → **Security & Privacy** → **Firewall**
+2. Allow incoming connections for Node.js
+3. Restart Excel
 
 ## Production Build
 

@@ -5,6 +5,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] - 2025-11-16
+
+### Fixed
+- Fixed macOS compatibility issues with HTTP requests from Office.js
+- Removed unsupported `alert()` calls that caused runtime errors in Office Add-ins
+- Fixed `window.alert is not supported` error on macOS Excel
+- Improved error handling with detailed network error messages
+- Fixed naming conflict in rate limiter middleware
+- Updated TypeScript-ESLint to v8 for ESLint 9 compatibility
+
+### Added
+- Diagnostic panel in Settings to verify current configuration
+- Detailed fetch error handling for better debugging
+- Safari Web Inspector instructions for macOS debugging
+- Comprehensive logging for optimization requests
+- HTTPS support documentation using ngrok
+- macOS-specific setup guide in QUICKSTART.md
+
+### Changed
+- Updated all deprecated dependencies to latest versions
+- Migrated from .eslintrc.json to eslint.config.mjs (ESLint 9 flat config)
+- Improved CORS configuration for development
+- Enhanced backend logging with request/response tracking
+- Updated documentation with macOS troubleshooting steps
+
 ## [1.0.0] - 2025-11-15
 
 ### Added
