@@ -67,18 +67,25 @@ const FormulaOptimizer: React.FC<Props> = ({ settings }) => {
 
       // Send to backend for optimization
       console.log('Sending request...');
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${settings.apiKey}`
-        },
-        body: JSON.stringify({
-          formula,
-          provider: settings.provider,
-          apiKey: settings.apiKey
-        })
-      });
+
+      let response;
+      try {
+        response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${settings.apiKey}`
+          },
+          body: JSON.stringify({
+            formula,
+            provider: settings.provider,
+            apiKey: settings.apiKey
+          })
+        });
+      } catch (fetchError: any) {
+        console.error('Fetch error:', fetchError);
+        throw new Error(`Network error: ${fetchError.message}. This may be due to CORS, HTTPS requirements, or network restrictions. Try using HTTPS backend or check if backend is running.`);
+      }
 
       console.log('Response status:', response.status);
       console.log('Response ok:', response.ok);
