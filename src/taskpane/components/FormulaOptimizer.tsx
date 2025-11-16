@@ -51,12 +51,23 @@ const FormulaOptimizer: React.FC<Props> = ({ settings }) => {
       setError('');
       setHasResult(false);
 
+      console.log('=== Starting optimization ===');
+      console.log('Settings:', settings);
+
       // Get formula from active cell
       const formula = await getActiveFormula();
+      console.log('Formula extracted:', formula);
       setOriginalFormula(formula);
 
+      // Build API URL
+      const apiUrl = `${settings.apiEndpoint}/api/optimize`;
+      console.log('API URL:', apiUrl);
+      console.log('Provider:', settings.provider);
+      console.log('API Key exists:', !!settings.apiKey);
+
       // Send to backend for optimization
-      const response = await fetch(`${settings.apiEndpoint}/api/optimize`, {
+      console.log('Sending request...');
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -64,15 +75,23 @@ const FormulaOptimizer: React.FC<Props> = ({ settings }) => {
         },
         body: JSON.stringify({
           formula,
-          provider: settings.provider
+          provider: settings.provider,
+          apiKey: settings.apiKey
         })
       });
 
+      console.log('Response status:', response.status);
+      console.log('Response ok:', response.ok);
+
       if (!response.ok) {
-        throw new Error(`API error: ${response.statusText}`);
+        const errorText = await response.text();
+        console.error('Error response:', errorText);
+        throw new Error(`API error: ${response.status} ${response.statusText}`);
       }
 
       const result = await response.json();
+      console.log('Result received:', result);
+
       setOptimizedFormula(result.optimized);
       setExplanation(result.explanation);
       setHasResult(true);
@@ -96,6 +115,8 @@ const FormulaOptimizer: React.FC<Props> = ({ settings }) => {
         await handleApply();
       }
     } catch (err: any) {
+      console.error('Optimization error:', err);
+      console.error('Error stack:', err.stack);
       setError(err.message || 'Failed to optimize formula');
     } finally {
       setLoading(false);
