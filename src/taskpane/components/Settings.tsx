@@ -87,6 +87,18 @@ const Settings: React.FC<Props> = ({ settings, onSettingsChange }) => {
         <Label>Auto-replace formulas without confirmation</Label>
       </div>
 
+      <div style={{ marginTop: '16px', padding: '12px', background: '#e1f5fe', borderRadius: '4px' }}>
+        <p style={{ fontSize: '12px', marginBottom: '8px' }}>
+          <strong>Current Settings (Diagnostic):</strong>
+        </p>
+        <pre style={{ fontSize: '10px', color: '#01579b', whiteSpace: 'pre-wrap', wordBreak: 'break-all' }}>
+          API Endpoint: {settings.apiEndpoint || 'NOT SET'}{'\n'}
+          Provider: {settings.provider || 'NOT SET'}{'\n'}
+          API Key: {settings.apiKey ? `${settings.apiKey.substring(0, 10)}...` : 'NOT SET'}{'\n'}
+          Auto-replace: {settings.autoReplace ? 'YES' : 'NO'}
+        </pre>
+      </div>
+
       <div style={{ marginTop: '16px', padding: '12px', background: '#f3f2f1', borderRadius: '4px' }}>
         <p style={{ fontSize: '12px', marginBottom: '8px' }}>
           <strong>Privacy Notice:</strong>
