@@ -57,7 +57,6 @@ const FormulaOptimizer: React.FC<Props> = ({ settings }) => {
       // Get formula from active cell
       const formula = await getActiveFormula();
       console.log('Formula extracted:', formula);
-      alert(`Formula: ${formula}\nAPI: ${settings.apiEndpoint}\nProvider: ${settings.provider}`);
       setOriginalFormula(formula);
 
       // Build API URL
@@ -83,7 +82,6 @@ const FormulaOptimizer: React.FC<Props> = ({ settings }) => {
 
       console.log('Response status:', response.status);
       console.log('Response ok:', response.ok);
-      alert(`Response status: ${response.status}`);
 
       if (!response.ok) {
         const errorText = await response.text();
@@ -119,8 +117,8 @@ const FormulaOptimizer: React.FC<Props> = ({ settings }) => {
     } catch (err: any) {
       console.error('Optimization error:', err);
       console.error('Error stack:', err.stack);
-      alert(`ERROR: ${err.message}`);
-      setError(err.message || 'Failed to optimize formula');
+      const errorDetails = `${err.message}\n\nAPI: ${settings.apiEndpoint}/api/optimize\nProvider: ${settings.provider}\nHas API Key: ${!!settings.apiKey}`;
+      setError(errorDetails);
     } finally {
       setLoading(false);
     }
