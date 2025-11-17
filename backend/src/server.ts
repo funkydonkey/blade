@@ -41,7 +41,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 // Add response logging
 app.use((req: Request, res: Response, next: NextFunction) => {
   const originalSend = res.send;
-  res.send = function(data) {
+  res.send = function(data: any) {
     logger.info(`Response ${res.statusCode} for ${req.method} ${req.path}`);
     return originalSend.call(this, data);
   };
