@@ -26,7 +26,7 @@ const App: React.FC = () => {
     provider: 'openai',
     autoReplace: false,
     hotkey: 'Ctrl+Shift+O',
-    apiEndpoint: 'http://localhost:5000'
+    apiEndpoint: 'https://blade-ywau.onrender.com'
   });
 
   useEffect(() => {

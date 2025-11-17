@@ -40,7 +40,7 @@ The repository includes `render.yaml` which automatically configures everything.
 
    - **Build Command** (⚠️ COPY CAREFULLY - use Latin "c" not Cyrillic "с"):
    ```
-   cd backend && npm ci && npm run build
+   cd backend && npm ci --include=dev && npm run build
    ```
 
    - **Start Command**:
@@ -67,7 +67,7 @@ The repository includes `render.yaml` which automatically configures everything.
 4. **Deploy**
    - Click "Create Web Service"
    - Wait for deployment to complete (5-10 minutes first time)
-   - Note your service URL (e.g., https://excel-ai-optimizer-backend.onrender.com)
+   - Note your service URL (e.g., https://blade-ywau.onrender.com)
 
 5. **Update Frontend Configuration**
    - Update `src/taskpane/components/App.tsx`
