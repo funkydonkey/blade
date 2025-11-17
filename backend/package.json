@@ -1,6 +1,6 @@
 {
   "name": "excel-ai-optimizer-backend",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Backend API for Excel AI Formula Optimizer",
   "main": "dist/server.js",
   "scripts": {

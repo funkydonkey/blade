@@ -6,7 +6,27 @@
 - Render.com account
 - GitHub repository connected to Render
 
-### Steps
+### Option 1: Using render.yaml (Recommended - Easiest)
+
+The repository includes `render.yaml` which automatically configures everything.
+
+1. **Push render.yaml to your repository** (already included)
+
+2. **Create Blueprint on Render**
+   - Go to https://render.com/
+   - Click "New" → "Blueprint"
+   - Connect your GitHub repository
+   - Render will automatically detect `render.yaml`
+
+3. **Add Secret Environment Variables**
+   In Render dashboard, add:
+   - `OPENAI_API_KEY` - Your OpenAI API key
+   - `ANTHROPIC_API_KEY` - Your Anthropic API key
+   - `GOOGLE_API_KEY` - Your Google API key
+
+4. **Click "Apply"** - Render will automatically build and deploy!
+
+### Option 2: Manual Web Service Configuration
 
 1. **Create a new Web Service on Render**
    - Go to https://render.com/
@@ -14,27 +34,40 @@
    - Connect your GitHub repository
 
 2. **Configure the service**
-   - **Name**: excel-ai-optimizer-api
+   - **Name**: excel-ai-optimizer-backend
    - **Environment**: Node
-   - **Build Command**: `cd backend && npm install && npm run build`
-   - **Start Command**: `cd backend && npm start`
-   - **Plan**: Free or Starter
+   - **Root Directory**: *(leave empty)*
+
+   - **Build Command** (⚠️ COPY CAREFULLY - use Latin "c" not Cyrillic "с"):
+   ```
+   cd backend && npm install && npm run build
+   ```
+
+   - **Start Command**:
+   ```
+   cd backend && npm start
+   ```
+
+   - **Plan**: Free
+
+   ⚠️ **IMPORTANT**: Make sure you copy-paste these commands! If you type manually, ensure your keyboard is in English mode. The error "сd: command not found" means you typed Cyrillic "с" instead of Latin "c".
 
 3. **Add Environment Variables**
    ```
    NODE_ENV=production
-   PORT=5000
+   PORT=10000
    OPENAI_API_KEY=your_key_here
    ANTHROPIC_API_KEY=your_key_here
    GOOGLE_API_KEY=your_key_here
-   OLLAMA_BASE_URL=http://your-ollama-server:11434
-   CORS_ORIGIN=https://your-frontend-domain.com
+   CORS_ORIGIN=*
    ```
+
+   **Note**: Render uses port 10000 by default. Don't change PORT.
 
 4. **Deploy**
    - Click "Create Web Service"
-   - Wait for deployment to complete
-   - Note your service URL (e.g., https://excel-ai-optimizer-api.onrender.com)
+   - Wait for deployment to complete (5-10 minutes first time)
+   - Note your service URL (e.g., https://excel-ai-optimizer-backend.onrender.com)
 
 5. **Update Frontend Configuration**
    - Update `src/taskpane/components/App.tsx`

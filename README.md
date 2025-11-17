@@ -81,6 +81,8 @@ This will:
 - Start webpack dev server on https://localhost:3000
 - Open Excel and sideload the add-in
 
+**Note for macOS users:** If you encounter "Load failed" errors when testing, see the [macOS Specific Setup](QUICKSTART.md#macos-specific-setup) section in QUICKSTART.md. You may need to use ngrok to create an HTTPS tunnel for the backend.
+
 ### Project Structure
 
 ```
@@ -119,8 +121,10 @@ Access settings through the Settings tab in the task pane:
 
 - **AI Provider**: Choose your preferred AI service
 - **API Key**: Enter your API key for the selected provider
-- **Backend Endpoint**: Configure the backend API URL
+- **Backend Endpoint**: Configure the backend API URL (e.g., http://localhost:5001 or your ngrok URL)
 - **Auto-Replace**: Enable automatic formula replacement without confirmation
+
+**Tip:** Use the "Current Settings (Diagnostic)" panel in Settings to verify all configurations are correct.
 
 ### Example Optimizations
 
