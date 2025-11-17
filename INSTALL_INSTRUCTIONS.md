@@ -47,7 +47,7 @@ Simple installation guide for end users.
    - **API Key**: Paste your OpenAI API key
    - **Backend API Endpoint**: Should already be set to:
      ```
-     https://excel-ai-optimizer-backend.onrender.com
+     https://blade-ywau.onrender.com
      ```
    - Leave other settings as default
 

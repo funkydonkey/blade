@@ -49,7 +49,7 @@ Or create a simple landing page with the manifest URL.
 
 ## What's Already Done ✅
 
-- ✅ Backend deployed on Render: `https://excel-ai-optimizer-backend.onrender.com`
+- ✅ Backend deployed on Render: `https://blade-ywau.onrender.com`
 - ✅ Frontend code ready for GitHub Pages
 - ✅ Production manifest.xml configured
 - ✅ GitHub Actions workflow set up

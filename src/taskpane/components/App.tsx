@@ -26,7 +26,7 @@ const App: React.FC = () => {
     provider: 'openai',
     autoReplace: false,
     hotkey: 'Ctrl+Shift+O',
-    apiEndpoint: 'https://excel-ai-optimizer-backend.onrender.com'
+    apiEndpoint: 'https://blade-ywau.onrender.com'
   });
 
   useEffect(() => {

@@ -110,7 +110,7 @@ const [settings, setSettings] = useState({
   provider: 'openai',
   autoReplace: false,
   hotkey: 'Ctrl+Shift+O',
-  apiEndpoint: 'https://excel-ai-optimizer-backend.onrender.com' // Your Render URL
+  apiEndpoint: 'https://blade-ywau.onrender.com' // Your Render URL
 });
 ```
 
@@ -226,7 +226,7 @@ Create a simple webpage or README with these steps:
 1. Click "Show Optimizer" in the ribbon
 2. Go to Settings tab
 3. Enter your OpenAI API key (get one at https://platform.openai.com/)
-4. Backend endpoint should be: https://excel-ai-optimizer-backend.onrender.com
+4. Backend endpoint should be: https://blade-ywau.onrender.com
 
 That's it! Now you can optimize formulas with Ctrl+Shift+O
 ```
