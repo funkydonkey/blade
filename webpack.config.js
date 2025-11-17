@@ -55,6 +55,10 @@ module.exports = (env, argv) => {
           {
             from: 'manifest.xml',
             to: 'manifest.xml'
+          },
+          {
+            from: 'public/index.html',
+            to: 'index.html'
           }
         ]
       })
