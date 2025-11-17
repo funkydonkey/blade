@@ -40,7 +40,7 @@ The repository includes `render.yaml` which automatically configures everything.
 
    - **Build Command** (⚠️ COPY CAREFULLY - use Latin "c" not Cyrillic "с"):
    ```
-   cd backend && npm ci && npm run build
+   cd backend && npm ci --include=dev && npm run build
    ```
 
    - **Start Command**:
