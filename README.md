@@ -7,6 +7,7 @@ AI-powered Excel Add-in for optimizing and simplifying Excel formulas using mult
 ## Features
 
 - **AI-Powered Optimization**: Automatically optimize Excel formulas using state-of-the-art AI models
+- **Formula Beautifier**: Format complex formulas with proper indentation and line breaks (works offline, no AI needed)
 - **Multiple AI Providers**: Choose between OpenAI, Anthropic Claude, Google Gemini, or local Ollama
 - **Hotkey Support**: Quick access with Ctrl+Shift+O
 - **Formula History**: Keep track of all optimizations with a searchable history
@@ -139,6 +140,63 @@ Access settings through the Settings tab in the task pane:
 **Complex VLOOKUP**
 - Original: `=IFERROR(VLOOKUP(A1,Sheet2!A:B,2,FALSE),"")`
 - Optimized: `=XLOOKUP(A1,Sheet2!A:A,Sheet2!B:B,"")`
+
+### Formula Beautifier (Offline Mode)
+
+The beautifier feature formats formulas for better readability without using AI:
+
+**Simple IF**
+- Original: `=IF(A1>0,"Yes","No")`
+- Beautified:
+```
+=IF(
+    A1>0,
+    "Yes",
+    "No"
+)
+```
+
+**Nested IF**
+- Original: `=IF(A1>100,IF(A1<200,"Medium","High"),"Low")`
+- Beautified:
+```
+=IF(
+    A1>100,
+    IF(
+        A1<200,
+        "Medium",
+        "High"
+    ),
+    "Low"
+)
+```
+
+**Complex Multi-Criteria**
+- Original: `=SUMIFS(C1:C1000,A1:A1000,">0",B1:B1000,"Yes")`
+- Beautified:
+```
+=SUMIFS(
+    C1:C1000,
+    A1:A1000,
+    ">0",
+    B1:B1000,
+    "Yes"
+)
+```
+
+**Features:**
+- Works 100% offline (no API calls)
+- Instant formatting
+- Handles nested functions correctly
+- Preserves quoted strings
+- Supports all Excel functions
+- Configurable indentation
+
+**How to use:**
+1. Select a cell with a formula
+2. Click "Make Readable (No AI)" button
+3. Review the formatted formula
+4. Apply or copy the result
 
 ## AI Providers
 
