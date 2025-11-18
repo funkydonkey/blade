@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Textarea } from '@fluentui/react-components';
-import { ArrowSyncRegular, CheckmarkRegular, DismissRegular, CopyRegular } from '@fluentui/react-icons';
+import { ArrowSyncRegular, CheckmarkRegular, DismissRegular, CopyRegular, TextAlignJustifyRegular } from '@fluentui/react-icons';
 import { OptimizationResult } from './App';
+import { beautifyFormula } from '../../utils/formulaBeautifier';
 
 /* global Excel */
 
@@ -159,11 +160,39 @@ const FormulaOptimizer: React.FC<Props> = ({ settings }) => {
     setError('');
   };
 
+  const handleBeautify = async () => {
+    try {
+      setLoading(true);
+      setError('');
+      setHasResult(false);
+
+      console.log('=== Starting beautification ===');
+
+      // Get formula from active cell
+      const formula = await getActiveFormula();
+      console.log('Formula extracted:', formula);
+      setOriginalFormula(formula);
+
+      // Beautify the formula locally (no API call needed)
+      const beautified = beautifyFormula(formula);
+      console.log('Formula beautified:', beautified);
+
+      setOptimizedFormula(beautified);
+      setExplanation('Formula has been formatted with proper indentation and line breaks for better readability.');
+      setHasResult(true);
+    } catch (err: any) {
+      console.error('Beautification error:', err);
+      setError(err.message || 'Failed to beautify formula');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   if (loading) {
     return (
       <div className="loading">
         <div className="loading-spinner" />
-        <p>Analyzing formula with AI...</p>
+        <p>Processing formula...</p>
       </div>
     );
   }
@@ -183,16 +212,25 @@ const FormulaOptimizer: React.FC<Props> = ({ settings }) => {
     return (
       <div>
         <p style={{ marginBottom: '16px', color: '#605e5c' }}>
-          Select a cell with a formula and click Optimize, or use the hotkey{' '}
-          <strong>{settings.hotkey}</strong>
+          Select a cell with a formula and click a button, or use the hotkey{' '}
+          <strong>{settings.hotkey}</strong> for optimization
         </p>
-        <Button
-          appearance="primary"
-          icon={<ArrowSyncRegular />}
-          onClick={handleOptimize}
-        >
-          Optimize Selected Formula
-        </Button>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          <Button
+            appearance="primary"
+            icon={<ArrowSyncRegular />}
+            onClick={handleOptimize}
+          >
+            Optimize with AI
+          </Button>
+          <Button
+            appearance="secondary"
+            icon={<TextAlignJustifyRegular />}
+            onClick={handleBeautify}
+          >
+            Make Readable (No AI)
+          </Button>
+        </div>
       </div>
     );
   }
@@ -205,7 +243,7 @@ const FormulaOptimizer: React.FC<Props> = ({ settings }) => {
       </div>
 
       <div className="formula-section">
-        <label className="formula-label">Optimized Formula</label>
+        <label className="formula-label">Result</label>
         <Textarea
           value={optimizedFormula}
           onChange={(_, data) => setOptimizedFormula(data.value)}
