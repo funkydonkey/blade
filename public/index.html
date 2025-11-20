@@ -661,8 +661,8 @@
             <div class="container">
                 <h1>Optimize Excel Formulas<br>with AI</h1>
                 <p>
-                    Open source Excel add-in that uses artificial intelligence to analyze and optimize your formulas.
-                    Make them faster, cleaner, and more efficient.
+                    Open source Excel add-in with <strong>two powerful tools</strong>: AI-powered optimization for better performance
+                    and instant formatting for better readability. Make your formulas faster, cleaner, and easier to understand.
                 </p>
                 <div class="cta-group">
                     <a href="#install" class="cta-button">
@@ -678,6 +678,8 @@
                         <span>View on GitHub</span>
                     </a>
                 </div>
+
+                <h2 style="margin-top: 80px; margin-bottom: 48px; font-size: 32px;">AI-Powered Optimization</h2>
 
                 <div class="formula-examples">
                     <div class="formula-example-row">
@@ -754,44 +756,124 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
 
+        <section style="background: var(--bg-secondary);">
+            <div class="container">
+                <h2>Make Readable (No AI)</h2>
+                <p class="section-subtitle">
+                    Instant local formatting without any API calls. Works 100% offline.
+                </p>
+
+                <div class="formula-examples">
                     <div class="formula-example-row">
                         <div class="formula-card">
                             <span class="formula-label before">Before</span>
-                            <div class="formula-code">=IF(AND(LEN(A1)&gt;0,ISNUMBER(B1),B1&gt;0),ROUND(B1*C1*(1+D1/100),2),"")</div>
+                            <div class="formula-code">=IF(A1>100,IF(A1<200,"Medium","High"),"Low")</div>
                             <div class="formula-improvement">
                                 <span style="color: var(--warning);">⚠</span>
-                                <span>Hard to read, nested logic is unclear</span>
+                                <span>Compressed on one line, hard to read</span>
                             </div>
                         </div>
 
                         <div class="arrow-divider">→</div>
 
                         <div class="formula-card">
-                            <span class="formula-label after">After "Make Readable"</span>
+                            <span class="formula-label after">After Formatting</span>
                             <div class="formula-code">=IF(
-  AND(A1&lt;&gt;"", ISNUMBER(B1), B1&gt;0),
-  ROUND(B1 * C1 * (1 + D1/100), 2),
-  ""
+    A1>100,
+    IF(
+        A1<200,
+        "Medium",
+        "High"
+    ),
+    "Low"
+)</div>
+                            <div class="formula-improvement">
+                                <div class="improvement-badge">
+                                    <span>✓</span>
+                                    <span>Instant</span>
+                                </div>
+                                <span>Proper indentation and line breaks</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="formula-example-row">
+                        <div class="formula-card">
+                            <span class="formula-label before">Before</span>
+                            <div class="formula-code">=SUMIFS(C1:C1000,A1:A1000,">0",B1:B1000,"Yes")</div>
+                            <div class="formula-improvement">
+                                <span style="color: var(--warning);">⚠</span>
+                                <span>Arguments unclear without spacing</span>
+                            </div>
+                        </div>
+
+                        <div class="arrow-divider">→</div>
+
+                        <div class="formula-card">
+                            <span class="formula-label after">After Formatting</span>
+                            <div class="formula-code">=SUMIFS(
+    C1:C1000,
+    A1:A1000,
+    ">0",
+    B1:B1000,
+    "Yes"
+)</div>
+                            <div class="formula-improvement">
+                                <div class="improvement-badge">
+                                    <span>✓</span>
+                                    <span>Clear</span>
+                                </div>
+                                <span>Each argument on its own line</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="formula-example-row">
+                        <div class="formula-card">
+                            <span class="formula-label before">Before</span>
+                            <div class="formula-code">=XLOOKUP(A2,Data!$A:$A,IF(B2="Total",Data!$C:$C,Data!$D:$D),"Not Found")</div>
+                            <div class="formula-improvement">
+                                <span style="color: var(--warning);">⚠</span>
+                                <span>Complex nested logic is hard to follow</span>
+                            </div>
+                        </div>
+
+                        <div class="arrow-divider">→</div>
+
+                        <div class="formula-card">
+                            <span class="formula-label after">After Formatting</span>
+                            <div class="formula-code">=XLOOKUP(
+    A2,
+    Data!$A:$A,
+    IF(
+        B2="Total",
+        Data!$C:$C,
+        Data!$D:$D
+    ),
+    "Not Found"
 )</div>
                             <div class="formula-improvement">
                                 <div class="improvement-badge">
                                     <span>✓</span>
                                     <span>Readable</span>
                                 </div>
-                                <span>Formatted with line breaks, clear logic flow</span>
+                                <span>Nested functions properly indented</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="highlight-box" style="margin-top: 56px;">
-                    <h3>✨ Make Readable Feature</h3>
+                    <h3>🚀 No AI Required</h3>
                     <p>
-                        Beyond optimization, our AI can <strong>reformat complex formulas</strong> to make them easier to understand and maintain.
-                        It adds proper spacing, line breaks, and logical grouping while preserving the exact same functionality.
-                        Perfect for documenting your spreadsheets or onboarding new team members. Just ask the AI to "make this formula more readable"
-                        in the context field, and it will restructure it for clarity without changing the logic.
+                        <strong>"Make Readable"</strong> is a local formatting tool that works instantly without any API calls or internet connection.
+                        It doesn't change your formula logic—only adds proper spacing, line breaks, and indentation to make complex formulas
+                        easier to read and maintain. Perfect for documentation, code reviews, and onboarding new team members.
+                        <strong>Completely free and privacy-friendly</strong> since it runs entirely in your browser.
                     </p>
                 </div>
             </div>
@@ -801,41 +883,75 @@
             <div class="container">
                 <h2>How It Works</h2>
                 <p class="section-subtitle">
-                    Four simple steps to optimize your Excel formulas with AI
+                    Choose between AI-powered optimization or instant local formatting
                 </p>
 
-                <div class="steps">
-                    <div class="step">
-                        <div class="step-number">1</div>
-                        <h3>Select Formula</h3>
-                        <p>
-                            Select a cell with a formula in Excel or highlight the formula text.
-                            The add-in automatically detects its content.
-                        </p>
+                <div style="margin-top: 56px;">
+                    <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 32px; text-align: center;">Option 1: Optimize with AI</h3>
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <h3>Select Formula</h3>
+                            <p>
+                                Select a cell with a formula in Excel. The add-in automatically detects its content.
+                            </p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <h3>Click "Optimize with AI"</h3>
+                            <p>
+                                Or use hotkey Ctrl+Shift+O. Your formula is sent for analysis via encrypted HTTPS connection.
+                            </p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <h3>AI Analyzes</h3>
+                            <p>
+                                GPT-4, Claude, or Gemini analyzes your formula: finds redundant calculations,
+                                optimizes structure, suggests more efficient functions.
+                            </p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <h3>Review & Apply</h3>
+                            <p>
+                                The optimized formula appears with detailed explanation. You decide whether to apply it or not.
+                            </p>
+                        </div>
                     </div>
-                    <div class="step">
-                        <div class="step-number">2</div>
-                        <h3>Press Ctrl+Shift+O</h3>
-                        <p>
-                            Use the hotkey or click "Optimize" in the task pane.
-                            Your formula is sent for analysis via encrypted connection.
-                        </p>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">3</div>
-                        <h3>AI Analyzes</h3>
-                        <p>
-                            GPT-4, Claude, or Gemini analyzes your formula: finds redundant calculations,
-                            optimizes structure, suggests more efficient functions.
-                        </p>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">4</div>
-                        <h3>Get Results</h3>
-                        <p>
-                            The optimized formula appears in the panel with detailed explanation of changes.
-                            You decide whether to apply it or not.
-                        </p>
+                </div>
+
+                <div style="margin-top: 64px;">
+                    <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 32px; text-align: center;">Option 2: Make Readable (No AI)</h3>
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <h3>Select Formula</h3>
+                            <p>
+                                Select a cell with a formula in Excel that you want to format.
+                            </p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <h3>Click "Make Readable"</h3>
+                            <p>
+                                Click the "Make Readable (No AI)" button. No internet required—works instantly!
+                            </p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <h3>Instant Formatting</h3>
+                            <p>
+                                Your formula is formatted locally with proper indentation and line breaks. No API calls, no waiting.
+                            </p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <h3>Apply or Copy</h3>
+                            <p>
+                                Review the formatted formula and apply it to your cell or copy it to clipboard.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
