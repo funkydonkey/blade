@@ -754,6 +754,45 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="formula-example-row">
+                        <div class="formula-card">
+                            <span class="formula-label before">Before</span>
+                            <div class="formula-code">=IF(AND(LEN(A1)&gt;0,ISNUMBER(B1),B1&gt;0),ROUND(B1*C1*(1+D1/100),2),"")</div>
+                            <div class="formula-improvement">
+                                <span style="color: var(--warning);">⚠</span>
+                                <span>Hard to read, nested logic is unclear</span>
+                            </div>
+                        </div>
+
+                        <div class="arrow-divider">→</div>
+
+                        <div class="formula-card">
+                            <span class="formula-label after">After "Make Readable"</span>
+                            <div class="formula-code">=IF(
+  AND(A1&lt;&gt;"", ISNUMBER(B1), B1&gt;0),
+  ROUND(B1 * C1 * (1 + D1/100), 2),
+  ""
+)</div>
+                            <div class="formula-improvement">
+                                <div class="improvement-badge">
+                                    <span>✓</span>
+                                    <span>Readable</span>
+                                </div>
+                                <span>Formatted with line breaks, clear logic flow</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box" style="margin-top: 56px;">
+                    <h3>✨ Make Readable Feature</h3>
+                    <p>
+                        Beyond optimization, our AI can <strong>reformat complex formulas</strong> to make them easier to understand and maintain.
+                        It adds proper spacing, line breaks, and logical grouping while preserving the exact same functionality.
+                        Perfect for documenting your spreadsheets or onboarding new team members. Just ask the AI to "make this formula more readable"
+                        in the context field, and it will restructure it for clarity without changing the logic.
+                    </p>
                 </div>
             </div>
         </section>
