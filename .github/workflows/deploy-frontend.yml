@@ -34,7 +34,7 @@ jobs:
         run: npm run build
 
       - name: Copy manifest to dist
-        run: cp manifest-production.xml dist/manifest.xml
+        run: cp manifest.xml dist/manifest.xml
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
